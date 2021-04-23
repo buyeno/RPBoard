@@ -1,12 +1,13 @@
 <template>
-  <div class="home">
-    <canvas id="canvas" width="1000" height="500"></canvas>
-  </div>
+  <v-container>
+    <div id="canvas" class="home"></div>
+  </v-container>
 </template>
 
 <script>
 import { fabric } from 'fabric';
 import * as PIXI from 'pixi.js';
+import logotexture from '../assets/logo.png';
 
 export default {
   name: 'Canvas',
@@ -24,11 +25,18 @@ export default {
       canvas.add(rect);
     },
     init() {
-      const app = new PIXI.Application({ backgroundColor: 0x1099bb });
-      document.body.appendChild(app.view);
+      const app = new PIXI.Application({
+        width: 800,
+        height: 600,
+        backgroundColor: 0x1099bb,
+        resolution: window.devicePixelRatio || 1,
+      });
+
+      let element = document.getElementById('canvas');
+      element.appendChild(app.view);
 
       // create a texture from an image path
-      const texture = PIXI.Texture.from('examples/assets/bunny.png');
+      const texture = PIXI.Texture.from(logotexture);
 
       // Scale mode for pixelation
       texture.baseTexture.scaleMode = PIXI.SCALE_MODES.NEAREST;
@@ -54,7 +62,7 @@ export default {
         bunny.anchor.set(0.5);
 
         // make it a bit bigger, so it's easier to grab
-        bunny.scale.set(3);
+        bunny.scale.set(0.2);
 
         // setup events for mouse + touch using
         // the pointer events
@@ -110,7 +118,7 @@ export default {
     },
   },
   mounted() {
-    this.setCanvas();
+    this.init();
     document.addEventListener('scroll', function() {});
   },
 };
