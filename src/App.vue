@@ -44,11 +44,6 @@
       :id="charSheet.id"
     >
       <div :id="charSheet.id + 'header'">Click here to move</div>
-      <!-- <CharSheet /> -->
-    </div>
-    <div id="mydiv">
-      <!-- Include a header DIV with the same name as the draggable DIV, followed by "header" -->
-      <div id="mydivheader">Click here to move</div>
       <CharSheet />
     </div>
 
