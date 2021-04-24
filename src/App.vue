@@ -14,23 +14,8 @@
       <SideBar />
     </v-navigation-drawer>
 
-    <v-navigation-drawer app clipped right expand-on-hover>
-      <v-list>
-        <v-list-item>
-          <v-text-field
-            dense
-            flat
-            hide-details
-            rounded
-            solo-inverted
-          ></v-text-field>
-        </v-list-item>
-        <v-list-item v-for="n in 5" :key="n" link>
-          <v-list-item-content>
-            <v-list-item-title>Item {{ n }}</v-list-item-title>
-          </v-list-item-content>
-        </v-list-item>
-      </v-list>
+    <v-navigation-drawer app clipped right>
+      <InfoBar />
     </v-navigation-drawer>
 
     <v-main>
@@ -47,7 +32,7 @@
       <CharSheet />
     </div>
 
-    <v-footer app color="transparent" height="72" inset>
+    <v-footer app color="white" height="72" inset>
       <v-text-field
         background-color="grey lighten-1"
         dense
@@ -55,6 +40,7 @@
         hide-details
         rounded
         solo
+        label="Chat"
       ></v-text-field>
     </v-footer>
   </v-app>
@@ -64,6 +50,7 @@
 import Canvas from '@/components/Canvas.vue';
 import SideBar from '@/components/SideBar.vue';
 import CharSheet from '@/components/CharacterSheet.vue';
+import InfoBar from '@/components/InfoBar.vue';
 import { JSFrame } from 'jsframe.js';
 export default {
   data: () => ({
@@ -203,6 +190,7 @@ export default {
     Canvas,
     CharSheet,
     SideBar,
+    InfoBar,
   },
   mounted() {
     this.dragElement('mydiv');

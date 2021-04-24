@@ -3,13 +3,13 @@
     <v-list>
       <v-list-item @click="charSheet()" class="px-2">
         <v-list-item-avatar>
-          <v-img :src="activeUser.avatar"></v-img>
+          <v-img :src="gm.avatar"></v-img>
         </v-list-item-avatar>
         <v-list-item-content>
           <v-list-item-title class="title">
-            {{ activeUser.charName }}
+            GM
           </v-list-item-title>
-          <v-list-item-subtitle>{{ activeUser.name }}</v-list-item-subtitle>
+          <v-list-item-subtitle>{{ gm.name }}</v-list-item-subtitle>
         </v-list-item-content>
       </v-list-item>
     </v-list>
@@ -19,13 +19,13 @@
     <v-list>
       <v-list-item @click="charSheet()" class="px-2">
         <v-list-item-avatar>
-          <v-img :src="gm.avatar"></v-img>
+          <v-img :src="activeUser.avatar"></v-img>
         </v-list-item-avatar>
         <v-list-item-content>
           <v-list-item-title class="title">
-            GM
+            {{ activeUser.charName }}
           </v-list-item-title>
-          <v-list-item-subtitle>{{ gm.name }}</v-list-item-subtitle>
+          <v-list-item-subtitle>{{ activeUser.name }}</v-list-item-subtitle>
         </v-list-item-content>
       </v-list-item>
     </v-list>
