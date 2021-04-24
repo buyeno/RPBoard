@@ -1,5 +1,14 @@
 # rpboard
 
+This is a project for creating an open web app to use with your favorite ttrpgs.
+
+dnd5e database: http://www.dnd5eapi.co/
+
+Material Library: https://vuetifyjs.com/en/
+
+Frameworks: 
+https://vuejs.org/ 
+
 ## Project setup
 ```
 npm install
