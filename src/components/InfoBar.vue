@@ -5,23 +5,28 @@
         <v-select
           v-model="selection"
           :items="items"
+          @change="getList()"
           label="Category"
         ></v-select>
       </v-list-item>
-      <v-list-item>
+      <v-list-item v-if="selection">
         <v-text-field
           dense
           flat
           hide-details
           rounded
           solo-inverted
-          label="Query Database"
+          label="Search"
           @keyup.enter="apiSearch"
           v-model="query"
         ></v-text-field>
       </v-list-item>
-      <v-list-item>
-        {{ api }}
+      <v-list-item
+        @click="getApi(item.url)"
+        v-for="(item, i) in filteredList"
+        :key="i"
+      >
+        {{ item.name }}
       </v-list-item>
     </v-list>
     <div v-if="result">{{ result }}</div>
@@ -40,18 +45,39 @@ export default {
       'equipment',
       'monsters',
     ],
-    selection: 'spells',
+    baseApi: 'https://www.dnd5eapi.co',
+    selection: '',
     query: '',
     result: undefined,
+    listResult: [],
   }),
   computed: {
     api() {
       let api =
-        'https://www.dnd5eapi.co/api/' +
+        this.baseApi +
+        '/api/' +
         this.selection +
         '/' +
         this.string_to_slug(this.query);
       return api;
+    },
+    list() {
+      let api = 'https://www.dnd5eapi.co/api/' + this.selection;
+      return api;
+    },
+    filteredList() {
+      let filteredList = [];
+
+      console.log(this.listResult);
+      for (let i in this.listResult) {
+        if (
+          this.listResult[i].index.includes(this.string_to_slug(this.query)) ||
+          this.query === ''
+        ) {
+          filteredList.push(this.listResult[i]);
+        }
+      }
+      return filteredList;
     },
   },
   methods: {
@@ -59,7 +85,17 @@ export default {
       console.log(this.api);
       this.axios.get(this.api).then((response) => {
         this.result = response.data;
-        console.log(response.data);
+        // console.log(response.data);
+      });
+    },
+    getList() {
+      this.axios.get(this.list).then((response) => {
+        this.listResult = response.data.results;
+      });
+    },
+    getApi(url) {
+      this.axios.get(this.baseApi + url).then((response) => {
+        this.result = response.data;
       });
     },
     string_to_slug(str) {
