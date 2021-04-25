@@ -31,8 +31,9 @@
       <div :id="charSheet.id + 'header'">Click here to move</div>
       <CharSheet />
     </div>
+    <BottomSheets />
 
-    <v-footer app color="white" height="72" inset>
+    <v-footer app color="transparent" inset>
       <v-text-field
         background-color="grey lighten-1"
         dense
@@ -51,6 +52,7 @@ import Canvas from '@/components/Canvas.vue';
 import SideBar from '@/components/SideBar.vue';
 import CharSheet from '@/components/CharacterSheet.vue';
 import InfoBar from '@/components/InfoBar.vue';
+import BottomSheets from '@/components/BottomSheets.vue';
 import { JSFrame } from 'jsframe.js';
 export default {
   data: () => ({
@@ -191,6 +193,7 @@ export default {
     CharSheet,
     SideBar,
     InfoBar,
+    BottomSheets,
   },
   mounted() {
     this.dragElement('mydiv');

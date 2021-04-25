@@ -29,7 +29,7 @@
         {{ item.name }}
       </v-list-item>
     </v-list>
-    <div v-if="result">{{ result }}</div>
+    <div v-if="result">{{ sheets }}</div>
   </div>
 </template>
 
@@ -52,6 +52,9 @@ export default {
     listResult: [],
   }),
   computed: {
+    sheets() {
+      return this.$store.state.sheets.sheets;
+    },
     api() {
       let api =
         this.baseApi +
@@ -84,8 +87,8 @@ export default {
     apiSearch() {
       console.log(this.api);
       this.axios.get(this.api).then((response) => {
-        this.result = response.data;
-        // console.log(response.data);
+        // this.result = response.data;
+        console.log(response.data);
       });
     },
     getList() {
@@ -96,6 +99,8 @@ export default {
     getApi(url) {
       this.axios.get(this.baseApi + url).then((response) => {
         this.result = response.data;
+        this.$store.commit('addSheet', response.data);
+        this.$store.commit('sheetExpand');
       });
     },
     string_to_slug(str) {
